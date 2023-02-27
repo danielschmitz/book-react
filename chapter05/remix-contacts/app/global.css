@@ -1,0 +1,32 @@
+
+nav > ul > li > h1 {
+    margin-bottom: 0px;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 0px;
+}
+
+.form_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form_footer > * {
+    max-width: 200px;
+}
+
+.error {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    border-color: antiquewhite;
+    background-color: brown;
+    color: white;
+}
