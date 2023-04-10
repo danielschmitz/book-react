@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+  HOST
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  role      Role     @default(USER)
+  places    Place[]
+
+  @@map("users")
+}
+
+model Country {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  City City[]
+
+  @@map("countries")
+}
+
+model City {
+  id        Int     @id @default(autoincrement())
+  name      String
+  countryId Int
+  country   Country @relation(fields: [countryId], references: [id])
+  places    Place[]
+
+  @@map("cities")
+}
+
+model Place {
+  id      Int     @id @default(autoincrement())
+  name    String
+  address String
+  price   Float
+  userId  Int
+  user    User    @relation(fields: [userId], references: [id])
+  cityId  Int
+  city    City    @relation(fields: [cityId], references: [id])
+  Photo   Photo[]
+
+  @@map("places")
+}
+
+model Photo { //npx prisma migrate dev --name=create_photos
+  id      Int    @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name    String 
+  img     Bytes
+  placeId Int
+  place   Place  @relation(fields: [placeId], references: [id])
+
+  @@map("photos")
+}

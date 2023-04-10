@@ -1,0 +1,84 @@
+@import url("@picocss/pico");
+
+nav > ul > li > h1 {
+  margin-bottom: 0px;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 0px;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  display: flex;
+  justify-content: center;  
+}
+
+.form_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form_footer > * {
+  max-width: 200px;
+}
+
+.error {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  border-color: antiquewhite;
+  background-color: brown;
+  color: white;
+}
+
+.flash {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  border-color: antiquewhite;
+  background-color: darkolivegreen;
+  color: white;
+}
+
+#loading {
+  position: fixed;
+  height: 4px;
+  width: 0%;
+  top: 0;
+  left: 0;
+  background-color: darkgray;
+  animation: loading 2s linear forwards;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.active {
+  background-color: var(--primary-focus);
+}
+
+:where(input, textarea)[aria-invalid="false"] {
+  border-color: var(--form-element-border-color);
+  background-image: none !important;
+}
+:where(select):not([type="checkbox"], [type="radio"], [type="date"], [type="datetime-local"], [type="month"], [type="time"], [type="week"])[aria-invalid="false"] {
+  border-color: var(--form-element-border-color);
+  background-image: var(--icon-chevron);
+}
